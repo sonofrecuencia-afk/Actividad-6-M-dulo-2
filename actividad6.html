@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 6 UMCE-SENADIS: Neurodiversidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-indigo: #1e1b4b;
+            --secondary-purple: #7e22ce;
+            --vibrant-violet: #7c3aed;
+            --accent-light: #f5f3ff;
+            --text-dark: #1e1b4b;
+        }
+
+        /* FONDO ANIMADO CON ALTO CONTRASTE PARA MOVIMIENTO VISIBLE */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(-45deg, #1e1b4b, #4c1d95, #7c3aed, #6d28d9);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            color: var(--text-dark);
+            margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* HEADER INSTITUCIONAL */
+        .header-nav { background: rgba(255, 255, 255, 0.95); border-bottom: 6px solid var(--secondary-purple); padding: 1.5rem; text-align: center; }
+        .header-nav h1 { margin: 0; font-size: 1.8rem; font-weight: 800; color: var(--primary-indigo); }
+        .header-nav p { margin: 8px 0 0 0; font-size: 0.9rem; font-weight: 800; color: #4b5563; text-transform: uppercase; letter-spacing: 1px; }
+
+        .main-container { max-width: 850px; margin: 2rem auto; padding: 0 1rem 4rem 1rem; }
+
+        /* BARRA DE PROGRESO */
+        .progress-box { background: white; border-radius: 15px; padding: 1.2rem; margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .progress-label { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 800; color: var(--primary-indigo); margin-bottom: 8px; }
+        .progress-bar { width: 100%; height: 12px; background: #e2e8f0; border-radius: 6px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--vibrant-violet); width: 0%; transition: width 0.6s ease; }
+
+        /* TARJETAS DE CONTENIDO */
+        .screen { display: none; background: white; border-radius: 25px; padding: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.3); }
+        .screen.active { display: block; animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* PORTADA E IMAGENES */
+        .cover-img { width: 100%; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .badge-tag { background: #ede9fe; color: var(--secondary-purple); padding: 6px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; display: inline-block; margin-bottom: 1rem; text-transform: uppercase; }
+
+        /* TEXTOS */
+        h2 { color: var(--primary-indigo); font-weight: 800; font-size: 1.8rem; margin-top: 0; }
+        .instruction-list { margin: 15px 0; padding-left: 20px; }
+        .instruction-list li { margin-bottom: 8px; font-size: 1.1rem; }
+        .case-text { font-size: 1.25rem; font-weight: 700; color: var(--primary-indigo); line-height: 1.5; margin-bottom: 1.5rem; border-left: 5px solid var(--vibrant-violet); padding-left: 15px; }
+
+        /* BOTONES DE OPCIÓN */
+        .options-container { display: grid; gap: 1rem; margin-top: 1.5rem; }
+        .option-btn { background: white; border: 2px solid #cbd5e1; padding: 1.2rem; border-radius: 15px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.2s; text-align: left; color: var(--text-dark); font-family: inherit; }
+        .option-btn:hover:not(:disabled) { border-color: var(--vibrant-violet); background: #f5f3ff; transform: translateX(5px); }
+        .option-btn.selected { background: var(--vibrant-violet); color: white; border-color: var(--primary-indigo); }
+
+        /* FEEDBACK */
+        .feedback-box { margin-top: 1.5rem; padding: 1.5rem; border-radius: 15px; display: none; line-height: 1.7; border-left: 8px solid; font-size: 1.1rem; }
+        .fb-style { background: #f5f3ff; border-color: var(--vibrant-violet); color: #2e1065; }
+
+        /* BOTON NAVEGACION */
+        .btn-next { background: linear-gradient(135deg, var(--primary-indigo), var(--vibrant-violet)); color: white; border: none; padding: 1.1rem 2.8rem; border-radius: 40px; font-size: 1.2rem; font-weight: 800; margin-top: 2rem; cursor: pointer; transition: 0.3s; display: block; width: fit-content; margin: 2rem auto 0 auto; box-shadow: 0 6px 15px rgba(49, 46, 129, 0.3); }
+        .btn-next:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+        @media (max-width: 600px) { .screen { padding: 1.5rem; } h2 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+
+    <header class="header-nav">
+        <h1>ACTIVIDAD 6 (ENFOQUE CONTEMPORÁNEO)</h1>
+        <p>“Comprender la neurodiversidad”</p>
+    </header>
+
+    <div class="main-container">
+        <div class="progress-box">
+            <div class="progress-label"><span>Progreso de la actividad</span><span id="progress-text">0/6</span></div>
+            <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+        </div>
+
+        <div id="screen-intro" class="screen active">
+            <img src="https://i.postimg.cc/PqLVHydM/Gemini-Generated-Image-78gjbj78gjbj78gj.png" alt="Portada Neurodiversidad" class="cover-img">
+            <span class="badge-tag">Propósito</span>
+            <p style="font-size: 1.15rem; line-height: 1.6; font-weight: 500;">Comprender críticamente el enfoque de la neurodiversidad y su relación con la práctica educativa y el desarrollo socioemocional del docente.</p>
+            
+            <div style="background: #f5f3ff; border-left: 6px solid var(--vibrant-violet); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
+                <strong>Instrucciones:</strong>
+                <p style="margin-top: 8px;">En esta actividad explorarás distintas formas de comprender la diversidad neurológica. Deberás:</p>
+                <ul class="instruction-list">
+                    <li>Identificar enfoques</li>
+                    <li>Reconocer tensiones</li>
+                    <li>Analizar implicancias pedagógicas y emocionales</li>
+                </ul>
+            </div>
+            <button class="btn-next" onclick="goTo('screen-q1')">Iniciar Actividad</button>
+        </div>
+
+        <div id="screen-q1" class="screen">
+            <span class="badge-tag">Nivel 1: Reconocimiento de enfoque</span>
+            <p class="case-text">Caso 1: “Algunos estudiantes tienen cerebros que funcionan de manera diferente, lo que influye en cómo aprenden e interactúan.”</p>
+            <p style="font-weight: 700;">Selecciona una opción:</p>
+            <div class="options-container">
+                <button class="option-btn" onclick="check(1, 'Enfoque de déficit')">● Enfoque de déficit</button>
+                <button class="option-btn" onclick="check(1, 'Enfoque de neurodiversidad')">● Enfoque de neurodiversidad</button>
+                <button class="option-btn" onclick="check(1, 'Enfoque clínico')">● Enfoque clínico</button>
+            </div>
+            <div id="fb1" class="feedback-box fb-style">
+                <strong>Retroalimentación:</strong> Este enfoque reconoce la diversidad neurológica como parte de la variabilidad humana, no como un problema por corregir.
+            </div>
+            <button id="btn-n1" class="btn-next" style="display:none" onclick="goTo('screen-q2')">Siguiente Caso</button>
+        </div>
+
+        <div id="screen-q2" class="screen">
+            <span class="badge-tag">Nivel 1: Reconocimiento de enfoque</span>
+            <p class="case-text">Caso 2: “Los estudiantes neurodivergentes deben adaptarse al sistema escolar.”</p>
+            <p style="font-weight: 700;">Selecciona una opción:</p>
+            <div class="options-container">
+                <button class="option-btn" onclick="check(2, 'Enfoque inclusivo')">● Enfoque inclusivo</button>
+                <button class="option-btn" onclick="check(2, 'Enfoque tradicional')">● Enfoque tradicional</button>
+                <button class="option-btn" onclick="check(2, 'Enfoque de neurodiversidad')">● Enfoque de neurodiversidad</button>
+            </div>
+            <div id="fb2" class="feedback-box fb-style">
+                <strong>Retroalimentación:</strong> Este enfoque mantiene la lógica de adaptación del estudiante, en lugar de transformar el entorno.
+            </div>
+            <button id="btn-n2" class="btn-next" style="display:none" onclick="goTo('screen-q3')">Nivel 2: Análisis crítico</button>
+        </div>
+
+        <div id="screen-q3" class="screen">
+            <span class="badge-tag">Nivel 2: Análisis crítico</span>
+            <p class="case-text">Caso 3: Un docente incorpora estrategias diversas, pero se frustra cuando algunos estudiantes no responden como espera. ¿Qué dimensión está en juego?</p>
+            <div class="options-container">
+                <button class="option-btn" onclick="check(3, 'Solo pedagógica')">● Solo pedagógica</button>
+                <button class="option-btn" onclick="check(3, 'Socioemocional docente')">● Socioemocional docente</button>
+                <button class="option-btn" onclick="check(3, 'Diagnóstico clínico')">● Diagnóstico clínico</button>
+            </div>
+            <div id="fb3" class="feedback-box fb-style">
+                <strong>Retroalimentación:</strong> La inclusión no solo implica estrategias, sino también el manejo emocional del docente ante la diversidad.
+            </div>
+            <button id="btn-n3" class="btn-next" style="display:none" onclick="goTo('screen-q4')">Siguiente Caso</button>
+        </div>
+
+        <div id="screen-q4" class="screen">
+            <span class="badge-tag">Nivel 2: Análisis crítico</span>
+            <p class="case-text">Caso 4: ¿Cuál de las siguientes afirmaciones refleja una comprensión crítica de la neurodiversidad?</p>
+            <div class="options-container">
+                <button class="option-btn" onclick="check(4, 'Todas las diferencias deben ser intervenidas')">● Todas las diferencias deben ser intervenidas</button>
+                <button class="option-btn" onclick="check(4, 'La diversidad neurológica requiere comprensión y ajuste del entorno')">● La diversidad neurológica requiere comprensión y ajuste del entorno</button>
+                <button class="option-btn" onclick="check(4, 'Solo algunos estudiantes necesitan apoyo')">● Solo algunos estudiantes necesitan apoyo</button>
+            </div>
+            <div id="fb4" class="feedback-box fb-style">
+                <strong>Retroalimentación:</strong> Este enfoque reconoce que el entorno debe adaptarse para favorecer la participación de todos.
+            </div>
+            <button id="btn-n4" class="btn-next" style="display:none" onclick="goTo('screen-q5')">Nivel 3: Puente al módulo siguiente</button>
+        </div>
+
+        <div id="screen-q5" class="screen">
+            <span class="badge-tag">Nivel 3: Puente al módulo siguiente</span>
+            <p class="case-text">¿Qué aspecto crees que será clave para trabajar la inclusión en el aula?</p>
+            <div class="options-container">
+                <button class="option-btn" onclick="check(5, 'Estrategias pedagógicas')">● Estrategias pedagógicas</button>
+                <button class="option-btn" onclick="check(5, 'Regulación emocional docente')">● Regulación emocional docente</button>
+                <button class="option-btn" onclick="check(5, 'Diagnóstico clínico')">● Diagnóstico clínico</button>
+                <button class="option-btn" onclick="check(5, 'Contenidos curriculares')">● Contenidos curriculares</button>
+            </div>
+            <div id="fb5" class="feedback-box fb-style">
+                <strong>Retroalimentación:</strong> La inclusión también implica gestionar las propias emociones ante la diversidad. Este será el foco del siguiente módulo.
+            </div>
+            <button id="btn-n5" class="btn-next" style="display:none" onclick="goTo('screen-end')">Finalizar Actividad</button>
+        </div>
+
+        <div id="screen-end" class="screen">
+            <div style="text-align: center;">
+                <span style="font-size: 5rem; display: block; margin-bottom: 1rem;">🧩</span>
+                <h2 style="color: var(--primary-indigo);">Actividad Finalizada</h2>
+                <p style="font-size: 1.2rem; color: #4b5563;">Has completado el análisis sobre la neurodiversidad.</p>
+                <div style="background: #f5f3ff; padding: 1.5rem; border-radius: 20px; border: 2px solid var(--vibrant-violet); margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 700; color: var(--primary-indigo);">Recuerda: La regulación emocional docente es clave para una práctica inclusiva.</p>
+                </div>
+                <p style="margin-top: 2rem; font-weight: 800; color: var(--primary-indigo);">UMCE-SENADIS 2026</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let current = 0;
+    const total = 6;
+
+    function goTo(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        
+        const steps = { 'screen-intro': 0, 'screen-q1': 1, 'screen-q2': 2, 'screen-q3': 3, 'screen-q4': 4, 'screen-q5': 5, 'screen-end': 6 };
+        current = steps[id];
+        
+        document.getElementById('progress-fill').style.width = (current / total * 100) + '%';
+        document.getElementById('progress-text').innerText = current + '/' + total;
+        window.scrollTo(0,0);
+    }
+
+    function check(q, choice) {
+        // Obtenemos los botones específicos de la pantalla actual
+        const screens = ['screen-intro', 'screen-q1', 'screen-q2', 'screen-q3', 'screen-q4', 'screen-q5'];
+        const btns = document.querySelectorAll(`#${screens[q]} .option-btn`);
+        
+        btns.forEach(b => {
+            b.disabled = true;
+            // Limpiamos el texto para comparar (quitando el bullet ●)
+            const cleanText = b.innerText.replace('● ', '');
+            if(cleanText === choice) b.classList.add('selected');
+        });
+        document.getElementById('fb' + q).style.display = 'block';
+        document.getElementById('btn-n' + q).style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
